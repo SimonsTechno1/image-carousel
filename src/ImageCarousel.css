@@ -10,12 +10,14 @@
   align-items: center;
   height: 65%; /* Adjust the height as needed */
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .carousel-image {
   max-width: 65%;
   max-height: 65%;
   object-fit: contain;
+  border-radius: 10px;
 }
 
 .exit-button {
