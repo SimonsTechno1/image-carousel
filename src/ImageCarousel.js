@@ -13,7 +13,11 @@ const ImageCarousel = ({ images }) => {
   const [showPhotos, setShowPhotos] = useState(false);
 
   const settings = {
+<<<<<<< HEAD
     dots: false,
+=======
+    dots:false,
+>>>>>>> a2a0130402d0f45cd0824e46b8a4d69a79fc35d7
     infinite: true,
     speed: 500,
     slidesToShow: 1,
