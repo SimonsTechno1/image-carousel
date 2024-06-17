@@ -11,7 +11,7 @@ const ImageCarousel = ({ images }) => {
   const [showStreetView, setShowStreetView] = useState(false);
 
   const settings = {
-    dots: true,
+    dots:false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
