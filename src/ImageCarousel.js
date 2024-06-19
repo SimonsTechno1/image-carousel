@@ -4,13 +4,15 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './ImageCarousel.css';
+import ImageView from './ImageView';
 
-const ImageCarousel = ({ images }) => {
+function ImageCarousel({ images }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showLocation, setShowLocation] = useState(false);
   const [showStreetView, setShowStreetView] = useState(false);
   const [showPhotos, setShowPhotos] = useState(false);
+  const [showImageView, setShowImageView] = useState(false);
 
   const settings = {
     dots: false,
@@ -36,6 +38,7 @@ const ImageCarousel = ({ images }) => {
   const toggleLocation = () => {
     setShowLocation(!showLocation);
     setShowStreetView(false);
+    setShowPhotos(false);
   };
 
   const toggleStreetView = () => {
@@ -50,6 +53,14 @@ const ImageCarousel = ({ images }) => {
     setShowLocation(false);
   };
 
+  const openImageView = (e) => {
+    e.stopPropagation();
+    setShowImageView(true);
+  };
+
+  const closeImageView = () => {
+    setShowImageView(false);
+  };
 
   return (
     <div className="carousel-container">
@@ -75,6 +86,9 @@ const ImageCarousel = ({ images }) => {
               </div>
             ))}
           </Slider>
+          <button onClick={openImageView} className="fancy-button">
+            Go to Image
+          </button>
         </div>
       )}
       {showLocation && (
@@ -116,13 +130,14 @@ const ImageCarousel = ({ images }) => {
           showLocation={showLocation}
           toggleLocation={toggleLocation}
           showStreetView={showStreetView}
-          toggleStreetView={toggleStreetView}
-        />
+          toggleStreetView={toggleStreetView} />
+      )}
+      {showImageView && (
+        <ImageView imageSrc="/images/your-image.jpg" onClose={closeImageView} />
       )}
     </div>
   );
-};
-
+}
 
 const ImageModal = ({ images, currentIndex, onClose, setCurrentIndex, showLocation, toggleLocation, showStreetView, toggleStreetView }) => {
   const nextImage = () => {
@@ -137,7 +152,7 @@ const ImageModal = ({ images, currentIndex, onClose, setCurrentIndex, showLocati
     <div className="modal">
       <span className="close" onClick={onClose}>&times;</span>
       <div className="button-container">
-      <h2 className='hi' style={{ color: 'white' }}>XYZproperty</h2>
+        <h2 className='hi' style={{ color: 'white' }}>XYZproperty</h2>
         <button className="location-button" onClick={toggleLocation}>
           {showLocation ? 'View Image' : 'Map Location'}
         </button>
