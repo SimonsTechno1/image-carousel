@@ -73,7 +73,7 @@ function ImageCarousel({ images }) {
                   <img src={image} alt={`Slide ${index + 1}`} className="carousel-image" />
                   <div className="button-overlay">
                     <button className="photos-button" onClick={togglePhotos}>
-                      {showPhotos ? 'Hide Photos' : 'View Photos (5) '}
+                      {showPhotos ? 'Hide Photos' : `View Photos (${images.length})`}
                     </button>
                     <button className="location-button" onClick={toggleLocation}>
                       {showLocation ? 'Hide Map View' : 'Map View'}
@@ -130,7 +130,8 @@ function ImageCarousel({ images }) {
           showLocation={showLocation}
           toggleLocation={toggleLocation}
           showStreetView={showStreetView}
-          toggleStreetView={toggleStreetView} />
+          toggleStreetView={toggleStreetView}
+        />
       )}
       {showImageView && (
         <ImageView imageSrc="/images/your-image.jpg" onClose={closeImageView} />
